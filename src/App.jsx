@@ -100,84 +100,87 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 style={{ fontSize: '34px' }}>User Management</h1>
-      <Dialog open={dialogOpen} onClose={handleDialogClose}>
-        <DialogTitle>{editMode ? 'Edit User' : 'Add New User'}</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Name"
-            type="text"
-            fullWidth
-            value={newUser.name}
-            onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-          />
-          <TextField
-            margin="dense"
-            label="Email"
-            type="email"
-            fullWidth
-            value={newUser.email}
-            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleDialogClose}>Cancel</Button>
-          <Button onClick={editMode ? handleUpdateUser : handleAddUser}>
-            {editMode ? 'Update User' : 'Add User'}
-          </Button>
-        </DialogActions>
-      </Dialog>
+    <h1 style={{ fontSize: '34px' }}>User Management</h1>
 
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Actions</th>
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user._id}> {/* Using _id as the key */}
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>
+                <IconButton
+                  style={{ color: 'orange' }}  // Edit icon in orange color
+                  onClick={() => handleDialogOpen(user)}
+                >
+                  <EditIcon />
+                </IconButton>
+                <IconButton
+                  style={{ color: 'red' }}  // Delete icon in red color
+                  onClick={() => handleDeleteUser(user._id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}> {/* Using _id as the key */}
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  <IconButton
-                    style={{ color: 'orange' }}  // Edit icon in orange color
-                    onClick={() => handleDialogOpen(user)}
-                  >
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton
-                    style={{ color: 'red' }}  // Delete icon in red color
-                    onClick={() => handleDeleteUser(user._id)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity={snackbarSeverity}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
-      <Button
-        variant="contained"
-        onClick={() => handleDialogOpen()}
-        startIcon={<AddIcon />}
-        sx={{ marginTop: '40px', backgroundColor: 'rgb(68, 68, 173)', color: 'white' }} // Match h1 color
-      >
-        Add New User
-      </Button>
+          ))}
+        </tbody>
+      </table>
     </div>
+
+    {/* Positioning Add New User button at the bottom */}
+    <Button
+      variant="contained"
+      onClick={() => handleDialogOpen()}
+      startIcon={<AddIcon />}
+      sx={{ marginTop: '40px', backgroundColor: 'rgb(68, 68, 173)', color: 'white' }} // Match h1 color
+    >
+      Add New User
+    </Button>
+
+    <Dialog open={dialogOpen} onClose={handleDialogClose}>
+      <DialogTitle>{editMode ? 'Edit User' : 'Add New User'}</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          label="Name"
+          type="text"
+          fullWidth
+          value={newUser.name}
+          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+        />
+        <TextField
+          margin="dense"
+          label="Email"
+          type="email"
+          fullWidth
+          value={newUser.email}
+          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleDialogClose}>Cancel</Button>
+        <Button onClick={editMode ? handleUpdateUser : handleAddUser}>
+          {editMode ? 'Update User' : 'Add User'}
+        </Button>
+      </DialogActions>
+    </Dialog>
+
+    <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+      <Alert onClose={handleSnackbarClose} severity={snackbarSeverity}>
+        {snackbarMessage}
+      </Alert>
+    </Snackbar>
+  </div>
   );
 }
 

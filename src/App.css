@@ -1,28 +1,33 @@
-/* App.css */
+/* General Layout */
 .app-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh; /* Full-screen height */
+  width: 98vw; /* Full-screen width */
   background-color: #f5f5f5; /* Light grey background */
 }
 
+/* Table Styling */
 .table-container {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  width: 90%; /* Make the table container 90% of the viewport width */
+  max-width: 800px; /* Maximum width for larger screens */
+  margin-top: 10px; /* Reduced margin */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 15px; /* Reduced space between table and heading */
 }
 
 th, td {
-  padding: 12px;
+  padding: 12px 16px; /* Reduced padding for compact look */
   text-align: left;
 }
 
@@ -30,42 +35,42 @@ th {
   background-color: #e0f2f1; /* Light blue background for header */
   color: black;
   font-weight: bold;
-  text-transform: capitalize;
-  border-bottom: 1px solid #ddd;
+  font-size: 16px;
 }
 
 td {
   border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
 }
 
+/* Headings */
 h1 {
-  font-size: 34px;
+  font-size: 30px; /* Reduced font size */
   text-align: center;
-  color: rgb(68, 68, 173); /* Same color as Add New User button */
-  font-family: 'Comic Sans MS', sans-serif;
-  margin-bottom: 20px;
+  color: rgb(68, 68, 173); /* Dark blue */
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 15px; /* Reduced margin between heading and table */
 }
 
-button {
-  text-transform: capitalize;
-}
-
-/* Add new user button styling */
+/* Add new user button */
 .MuiButton-root {
   display: block;
-  margin: 0 auto; /* Center the button */
+  margin: 15px auto; /* Reduced margin below table */
   background-color: rgb(68, 68, 173);
   color: white;
-  padding: 10px 20px;
+  padding: 10px 20px; /* Slightly smaller button */
   font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .MuiButton-root:hover {
   background-color: rgb(55, 55, 160);
 }
 
+/* Icon button styling */
 .MuiIconButton-root {
-  padding: 6px;
+  margin: 0 8px;
 }
 
 .MuiSnackbar-root {
@@ -73,7 +78,24 @@ button {
   justify-content: center;
 }
 
-/* Icon button styling */
-.MuiIconButton-root {
-  margin: 0 5px;
+/* Improved Typography */
+body, button, input, textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+.MuiDialogTitle-root {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.MuiDialogContent-root {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.MuiAlert-message {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
 }
